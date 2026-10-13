@@ -3,6 +3,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from datetime import datetime
 import time
+import os
 
 st.set_page_config(page_title="System Health Dashboard", layout="wide")
 
@@ -17,10 +18,12 @@ def get_memory_usage():
     mem = psutil.virtual_memory()
     return mem.percent, mem.used, mem.total
 
-def get_disk_usage(path="C:\\"):
+def get_disk_usage(path=None):
+    if path is None:
+        path = "C:\\" if os.name == "nt" else "/"
     disk = psutil.disk_usage(path)
     return disk.percent, disk.used, disk.total
-
+    
 def bytes_to_gb(value):
     return round(value / (1024 ** 3), 2)
 
