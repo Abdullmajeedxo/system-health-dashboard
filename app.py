@@ -9,7 +9,6 @@ st.set_page_config(page_title="System Health Dashboard", layout="wide")
 st.title("🖥️ System Health Dashboard")
 st.caption(f"Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
-
 def get_cpu_usage():
 
     return psutil.cpu_percent(interval=1)
@@ -26,7 +25,7 @@ def bytes_to_gb(value):
     return round(value / (1024 ** 3), 2)
 
 def make_gauge(value, title):
-
+    
     if value < 60:
         color = "green"
     elif value < 85:
